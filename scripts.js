@@ -1,5 +1,7 @@
-var addressViewInstance = new AddressView({
-    model: new Address()
+var address = new Address();
+
+  addressViewInstance = new AddressView({
+    model: address
   })
 
   headOfFamily = new Person(),
@@ -41,4 +43,19 @@ app.on('start', function() {
 app.start();
 
 
-// headOfFamily.set('email', 'shoukhan@yahoo.com')
+
+
+// Changing models
+address.set({
+  street: '1010 Pinetree Cir N',
+  city: 'Buffalo Grove'
+});
+headOfFamily.set('email', 'shoukhan@yahoo.com');
+
+
+
+var userChannel = Backbone.Radio.channel('user');
+userChannel.on('some:event', function() {
+  console.log('An event has happened!');
+});;
+userChannel.trigger('some:event');
